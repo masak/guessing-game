@@ -4,15 +4,22 @@
     <meta charset="utf-8">
     <title>Gissa ett tal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="bootstrap-5.1.1.min.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <p><a href="source-code.html">Källkoden</a></p>
-    <p>Jag tänker på ett tal mellan 1 och 100. Kan du gissa det?</p>
-    <ul id="previous-guesses"></ul>
-    <form>
-      <input id="guess">
-      <input type="submit" value="Gissa">
-    </form>
+    <div class="container">
+      <p><a href="source-code.html">Källkoden</a></p>
+      <p>Jag tänker på ett tal mellan 1 och 100. Kan du gissa det?</p>
+      <ul id="previous-guesses"></ul>
+      <form class="row g-3">
+        <div class="col-auto">
+          <input id="guess" class="form-control">
+        </div>
+        <div class="col-auto">
+          <input type="submit" value="Gissa" class="btn btn-primary">
+        </div>
+      </form>
+    </div>
   </body>
 
   <script src="jquery-3.6.0.js"></script>
