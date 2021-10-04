@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Gissa ett tal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <p>Jag tänker på ett tal mellan 1 och 100. Kan du gissa det?</p>
+    <ul id="previous-guesses"></ul>
+    <form>
+      <input id="guess">
+      <input type="submit" value="Gissa">
+    </form>
+  </body>
+
+  <script src="jquery-3.6.0.js"></script>
+
+  <script>
+    let targetNumber = 1 + Math.floor(Math.random() * 100);
+
+    let $guessInput = $("input#guess");
+    $guessInput.focus();
+
+    function addGuess(message) {
+        $("ul#previous-guesses").append(
+            $("<li></li>").text(message)
+        );
+    }
+
+    let $guessButton = $("input[type=submit]");
+    $guessButton.on("click", (event) => {
+        event.preventDefault();
+        let inputText = $guessInput.val();
+
+        if (Number.isNaN(Number(inputText))) {
+            addGuess("Du gissade något som inte är ett tal");
+        }
+        else {
+            let number = Number(inputText);
+            if (number == targetNumber) {
+                addGuess(`Du gissade rätt och vann: ${number}`);
+                $guessButton.prop("disabled", true);
+            }
+            else if (number > targetNumber) {
+                addGuess(`Du gissade ${number}. Rätt svar är lägre.`);
+            }
+            else if (number < targetNumber) {
+                addGuess(`Du gissade ${number}. Rätt svar är högre.`);
+            }
+        }
+
+        $guessInput.val("");
+        $guessInput.focus();
+    });
+  </script>
+</html>
+
