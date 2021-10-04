@@ -4,77 +4,83 @@
     <meta charset="utf-8">
     <title>Gissa ett tal :: Källkoden</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="bootstrap-5.1.1.min.css" rel="stylesheet" type="text/css" />
+    <style>
+      body {
+        padding-top: 2ex;
+      }
+      pre {
+        padding: 1em;
+        background: #eee;
+      }
+    </style>
   </head>
   <body>
-    <p>Spelet består av lite HTML (sidans innhåll) och lite JavaScript
-    (sidans beteende).</p>
+    <div class="container">
+      <p>Spelet består av lite HTML (sidans innhåll) och lite JavaScript
+      (sidans beteende).</p>
 
-    <p>Här är HTML:en. Det är inte så mycket.</p>
+      <p>Här är HTML:en. Det är inte så mycket.</p>
 
-    <pre><code>
-      &lt;p&gt;Jag tänker på ett tal mellan 1 och 100. Kan du gissa det?&lt;/p&gt;
-      &lt;ul id="previous-guesses"&gt;&lt;/ul&gt;
-      &lt;form class="row g-3"&gt;
-        &lt;div class="col-auto"&gt;
-          &lt;input
-            id="guess"
-            placeholder="Ett tal, t.ex. 50"
-            class="form-control"&gt;
-        &lt;/div&gt;
-        &lt;div class="col-auto"&gt;
-          &lt;input type="submit" value="Gissa" class="btn btn-primary"&gt;
-        &lt;/div&gt;
-      &lt;/form&gt;
-    </code></pre>
+      <pre><code>&lt;p&gt;Jag tänker på ett tal mellan 1 och 100. Kan du gissa det?&lt;/p&gt;
+&lt;ul id="previous-guesses"&gt;&lt;/ul&gt;
+&lt;form class="row g-3"&gt;
+  &lt;div class="col-auto"&gt;
+    &lt;input
+      id="guess"
+      placeholder="Ett tal, t.ex. 50"
+      class="form-control"&gt;
+  &lt;/div&gt;
+  &lt;div class="col-auto"&gt;
+    &lt;input type="submit" value="Gissa" class="btn btn-primary"&gt;
+  &lt;/div&gt;
+&lt;/form&gt;</code></pre>
 
-    <p>JavaScript-koden använder sig av ett litet bibliotek som heter
-    <a href="https://jquery.com">jQuery</a>, som gör det lättare att
-    manipulera HTML-dokument.</p>
+      <p>JavaScript-koden använder sig av ett litet bibliotek som heter
+      <a href="https://jquery.com">jQuery</a>, som gör det lättare att
+      manipulera HTML-dokument.</p>
 
-    <pre><code>
-      &lt;script src="jquery-3.6.0.js"&gt;&lt;/script&gt;
-    </code></pre>
+      <pre><code>&lt;script src="jquery-3.6.0.js"&gt;&lt;/script&gt;</code></pre>
 
-    <p>Och här är själva JavaScript-koden för spelet:</p>
+      <p>Och här är själva JavaScript-koden för spelet:</p>
 
-    <pre><code>
-      let targetNumber = 1 + Math.floor(Math.random() * 100);
+      <pre><code>let targetNumber = 1 + Math.floor(Math.random() * 100);
 
-      let $guessInput = $("input#guess");
-      $guessInput.focus();
+let $guessInput = $("input#guess");
+$guessInput.focus();
 
-      function addGuess(message) {
-          $("ul#previous-guesses").append(
-              $("&lt;li&gt;&lt;/li&gt;").text(message)
-          );
-      }
+function addGuess(message) {
+    $("ul#previous-guesses").append(
+        $("&lt;li&gt;&lt;/li&gt;").text(message)
+    );
+}
 
-      let $guessButton = $("input[type=submit]");
-      $guessButton.on("click", (event) =&gt; {
-          event.preventDefault();
-          let inputText = $guessInput.val();
+let $guessButton = $("input[type=submit]");
+$guessButton.on("click", (event) =&gt; {
+    event.preventDefault();
+    let inputText = $guessInput.val();
 
-          if (Number.isNaN(Number(inputText))) {
-              addGuess("Du gissade något som inte är ett tal");
-          }
-          else {
-              let number = Number(inputText);
-              if (number == targetNumber) {
-                  addGuess(`Du gissade rätt och vann: ${number}`);
-                  $guessButton.prop("disabled", true);
-              }
-              else if (number &gt; targetNumber) {
-                  addGuess(`Du gissade ${number}. Rätt svar är lägre.`);
-              }
-              else if (number &lt; targetNumber) {
-                  addGuess(`Du gissade ${number}. Rätt svar är högre.`);
-              }
-          }
+    if (Number.isNaN(Number(inputText))) {
+        addGuess("Du gissade något som inte är ett tal");
+    }
+    else {
+        let number = Number(inputText);
+        if (number == targetNumber) {
+            addGuess(`Du gissade rätt och vann: ${number}`);
+            $guessButton.prop("disabled", true);
+        }
+        else if (number &gt; targetNumber) {
+            addGuess(`Du gissade ${number}. Rätt svar är lägre.`);
+        }
+        else if (number &lt; targetNumber) {
+            addGuess(`Du gissade ${number}. Rätt svar är högre.`);
+        }
+    }
 
-          $guessInput.val("");
-          $guessInput.focus();
-      });
-    </code></pre>
+    $guessInput.val("");
+    $guessInput.focus();
+});</code></pre>
+    </div>
   </body>
 </html>
 
