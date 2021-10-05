@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Gissa ett tal :: Pseudokod</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="bootstrap-5.1.1.min.css" rel="stylesheet" type="text/css" />
+    <style>
+      body {
+        padding-top: 2ex;
+      }
+      p.pseudocode {
+        padding: 1em;
+        background: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <p>Med "pseudokod" menar vi en beskrivning av koden i prosa, men med
+      strukturen av programkod. Det är ett beprövat sätt att organisera
+      programmet utan att behöva följa reglerna för ett visst
+      programspråk.</p>
+
+      <p>Vi använder nyckelorden <em><strong>while</strong></em> och
+      <em><strong>if</strong></em> eftersom dessa är traditionsbundna och
+      motsvarande ord på svenska ("medan", "om") saknar rätt magisk
+      kraft.</p>
+
+      <p class="pseudocode">
+        <code>secretNumber</code> &larr; <em>ett slumpat tal mellan 1 (inklusive) och 100 (inklusive)</em><br>
+        <em><strong>while</strong> spelet inte är vunnet:</em><br>
+        &nbsp;&nbsp;<code>number</code> &larr; <em>nästa gissning från användaren</em><br>
+        &nbsp;&nbsp;<em><strong>if</strong></em> <code>number</code> <em>=</em> <code>secretNumber</code>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<em>vinn spelet</em><br>
+        &nbsp;&nbsp;<em><strong>if</strong></em> <code>number</code> <em>&lt;</em> <code>secretNumber</code>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<em>säg "gissa högre"</em><br>
+        &nbsp;&nbsp;<em><strong>if</strong></em> <code>number</code> <em>&gt;</em> <code>secretNumber</code>:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<em>säg "gissa lägre"</em>
+      </p>
+    </div>
+  </body>
+</html>
+
